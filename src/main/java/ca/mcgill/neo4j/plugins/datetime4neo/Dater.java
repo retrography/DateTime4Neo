@@ -19,6 +19,9 @@ package ca.mcgill.neo4j.plugins.datetime4neo;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+// Next steps: overlap calculator and duration calculator
+
+
 import org.neo4j.graphdb.*;
 import org.neo4j.server.plugins.*;
 import org.neo4j.tooling.GlobalGraphOperations;
@@ -57,6 +60,9 @@ public class Dater extends ServerPlugin {
                 String start = node.getProperty(startProperty, "").toString();
                 String end = node.getProperty(endProperty, "").toString();
 
+                if (start.isEmpty() || end.isEmpty()) {
+                    continue;
+                }
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern(format);
 
                 LocalDate lsStart = LocalDate.parse(start, formatter);
@@ -66,16 +72,16 @@ public class Dater extends ServerPlugin {
 
                 switch (unit.toUpperCase()) {
                     case "YEARS":
-                        period = ChronoUnit.YEARS.between(lsStart, lsEnd);
+                        period = ChronoUnit.YEARS.between(lsStart, lsEnd) + 1;
                         break;
                     case "MONTHS":
-                        period = ChronoUnit.MONTHS.between(lsStart, lsEnd);
+                        period = ChronoUnit.MONTHS.between(lsStart, lsEnd) + 1;
                         break;
                     case "WEEKS":
-                        period = ChronoUnit.WEEKS.between(lsStart, lsEnd);
+                        period = ChronoUnit.WEEKS.between(lsStart, lsEnd) + 1;
                         break;
                     default:
-                        period = ChronoUnit.DAYS.between(lsStart, lsEnd);
+                        period = ChronoUnit.DAYS.between(lsStart, lsEnd) + 1;
                         break;
                 }
 
