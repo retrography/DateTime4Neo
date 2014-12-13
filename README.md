@@ -1,7 +1,7 @@
 Regx4Neo
 ========
 
-A simple Neo4j server plugin that makes it possible to execute server-side date-time related calculations on date-time values saved as text properties in Neo4j database. This fills a void in Cypher Query Language that I am sure will be addressed soon. 
+A simple Neo4j server plugin that makes it possible to execute server-side time-related calculations on date-time values saved as text properties in Neo4j database. This fills a void in Cypher Query Language that I am sure will be addressed soon.
 
 ### Installation 
 
@@ -26,49 +26,49 @@ Sending a GET request with each of this addresses will inform you about the supp
 
 For instance running `:GET /db/data/ext/Dater/graphdb/dt_period` will return the following:
 
-{
-  "extends" : "graphdb",
-  "description" : "Calculates the length of a period and returns or saves the result.",
-  "name" : "dt_period",
-  "parameters" : [
     {
-      "optional" : false,
-      "description" : "The label by which nodes should be filtered.",
-      "type" : "string",
-      "name" : "label"
-    },
-    {
-      "optional" : false,
-      "description" : "The property pointing to the beginning of the period.",
-      "type" : "string",
-      "name" : "start"
-    },
-    {
-      "optional" : false,
-      "description" : "The property pointing to the end of the period.",
-      "type" : "string",
-      "name" : "end"
-    },
-    {
-      "optional" : false,
-      "description" : "The date pattern used. (See http://docs.oracle.com/javase/8/docs/api/java/time/format/DateTimeFormatter.html)",
-      "type" : "string",
-      "name" : "format"
-    },
-    {
-      "optional" : true,
-      "description" : "The time unit for the results (YEARS, MONTHS, WEEKS or DAYS). Defaults to days.",
-      "type" : "string",
-      "name" : "unit"
-    },
-    {
-      "optional" : true,
-      "description" : "The property that must be populated with the results.",
-      "type" : "string",
-      "name" : "output"
+      "extends" : "graphdb",
+      "description" : "Calculates the length of a period and returns or saves the result.",
+      "name" : "dt_period",
+      "parameters" : [
+        {
+          "optional" : false,
+          "description" : "The label by which nodes should be filtered.",
+          "type" : "string",
+          "name" : "label"
+        },
+        {
+          "optional" : false,
+          "description" : "The property pointing to the beginning of the period.",
+          "type" : "string",
+          "name" : "start"
+        },
+        {
+          "optional" : false,
+          "description" : "The property pointing to the end of the period.",
+          "type" : "string",
+          "name" : "end"
+        },
+        {
+          "optional" : false,
+          "description" : "The date pattern used. (See http://docs.oracle.com/javase/8/docs/api/java/time/format/DateTimeFormatter.html)",
+          "type" : "string",
+          "name" : "format"
+        },
+        {
+          "optional" : true,
+          "description" : "The time unit for the results (YEARS, MONTHS, WEEKS or DAYS). Defaults to days.",
+          "type" : "string",
+          "name" : "unit"
+        },
+        {
+          "optional" : true,
+          "description" : "The property that must be populated with the results.",
+          "type" : "string",
+          "name" : "output"
+        }
+      ]
     }
-  ]
-}
 
 And accordingly, a sample split query would be as follows:
 
